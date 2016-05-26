@@ -1,13 +1,13 @@
 #!/usr/bin/env python2
-# Copyright (c) 2014-2015 The Bitcoin Core developers
+# Copyright (c) 2014-2015 The VCoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import VCoinTestFramework
 from test_framework.util import *
 
-class WalletTest (BitcoinTestFramework):
+class WalletTest (VCoinTestFramework):
 
     def check_fee_amount(self, curr_balance, balance_with_fee, fee_per_byte, tx_size):
         """Return curr_balance after asserting the fee was in range"""
@@ -180,7 +180,7 @@ class WalletTest (BitcoinTestFramework):
 
         #do some -walletbroadcast tests
         stop_nodes(self.nodes)
-        wait_bitcoinds()
+        wait_vcoinds()
         self.nodes = start_nodes(3, self.options.tmpdir, [["-walletbroadcast=0"],["-walletbroadcast=0"],["-walletbroadcast=0"]])
         connect_nodes_bi(self.nodes,0,1)
         connect_nodes_bi(self.nodes,1,2)
@@ -206,7 +206,7 @@ class WalletTest (BitcoinTestFramework):
 
         #restart the nodes with -walletbroadcast=1
         stop_nodes(self.nodes)
-        wait_bitcoinds()
+        wait_vcoinds()
         self.nodes = start_nodes(3, self.options.tmpdir)
         connect_nodes_bi(self.nodes,0,1)
         connect_nodes_bi(self.nodes,1,2)
@@ -266,7 +266,7 @@ class WalletTest (BitcoinTestFramework):
         ]
         for m in maintenance:
             stop_nodes(self.nodes)
-            wait_bitcoinds()
+            wait_vcoinds()
             self.nodes = start_nodes(3, self.options.tmpdir, [[m]] * 3)
             connect_nodes_bi(self.nodes,0,1)
             connect_nodes_bi(self.nodes,1,2)

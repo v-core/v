@@ -1308,7 +1308,7 @@ AC_SUBST([am__untar])
 ]) # _AM_PROG_TAR
 
 m4_include([build-aux/m4/ax_prog_cc_for_build.m4])
-m4_include([build-aux/m4/bitcoin_secp.m4])
+m4_include([build-aux/m4/vcoin_secp.m4])
 m4_include([build-aux/m4/libtool.m4])
 m4_include([build-aux/m4/ltoptions.m4])
 m4_include([build-aux/m4/ltsugar.m4])

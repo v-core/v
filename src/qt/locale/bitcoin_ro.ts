@@ -60,7 +60,7 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>VCoinGUI</name>
     </context>
 <context>
     <name>ClientModel</name>
@@ -164,6 +164,6 @@
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>vcoin-core</name>
     </context>
 </TS>

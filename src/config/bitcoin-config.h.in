@@ -1,8 +1,8 @@
-/* src/config/bitcoin-config.h.in.  Generated from configure.ac by autoheader.  */
+/* src/config/vcoin-config.h.in.  Generated from configure.ac by autoheader.  */
 
-#ifndef BITCOIN_CONFIG_H
+#ifndef VCOIN_CONFIG_H
 
-#define BITCOIN_CONFIG_H
+#define VCOIN_CONFIG_H
 
 /* Define if building universal (internal helper macro) */
 #undef AC_APPLE_UNIVERSAL_BUILD
@@ -374,4 +374,4 @@
 /* Define for large files, on AIX-style hosts. */
 #undef _LARGE_FILES
 
-#endif //BITCOIN_CONFIG_H
+#endif //VCOIN_CONFIG_H
