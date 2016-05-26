@@ -73,7 +73,7 @@ if BUILD_VCOIND
 endif
 
 if BUILD_VCOIN_UTILS
-  bin_PROGRAMS += vcoin-cli bitcoin-tx
+  bin_PROGRAMS += vcoin-cli vcoin-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
@@ -181,7 +181,7 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libvcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between vcoind and bitcoin-qt
+# server: shared between vcoind and vcoin-qt
 libvcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(VCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libvcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libvcoin_server_a_SOURCES = \
@@ -230,7 +230,7 @@ libvcoin_zmq_a_SOURCES = \
 endif
 
 
-# wallet: shared between vcoind and bitcoin-qt, but only linked
+# wallet: shared between vcoind and vcoin-qt, but only linked
 # when wallet enabled
 libvcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(VCOIN_INCLUDES)
 libvcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -263,7 +263,7 @@ crypto_libvcoin_crypto_a_SOURCES = \
   crypto/sha512.cpp \
   crypto/sha512.h
 
-# common: shared between vcoind, and bitcoin-qt and non-server tools
+# common: shared between vcoind, and vcoin-qt and non-server tools
 libvcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(VCOIN_INCLUDES)
 libvcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libvcoin_common_a_SOURCES = \
@@ -319,7 +319,7 @@ if GLIBC_BACK_COMPAT
 libvcoin_util_a_SOURCES += compat/glibc_compat.cpp
 endif
 
-# cli: shared between vcoin-cli and bitcoin-qt
+# cli: shared between vcoin-cli and vcoin-qt
 libvcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(VCOIN_INCLUDES)
 libvcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libvcoin_cli_a_SOURCES = \
@@ -330,13 +330,13 @@ nodist_libvcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # vcoind binary #
-vcoind_SOURCES = bitcoind.cpp
+vcoind_SOURCES = vcoind.cpp
 vcoind_CPPFLAGS = $(AM_CPPFLAGS) $(VCOIN_INCLUDES)
 vcoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 vcoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-vcoind_SOURCES += bitcoind-res.rc
+vcoind_SOURCES += vcoind-res.rc
 endif
 
 vcoind_LDADD = \
@@ -354,19 +354,19 @@ vcoind_LDADD += $(LIBVCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
 if ENABLE_WALLET
-vcoind_LDADD += libbitcoin_wallet.a
+vcoind_LDADD += libvcoin_wallet.a
 endif
 
 vcoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
 
 # vcoin-cli binary #
-vcoin_cli_SOURCES = bitcoin-cli.cpp
+vcoin_cli_SOURCES = vcoin-cli.cpp
 vcoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(VCOIN_INCLUDES) $(EVENT_CFLAGS)
 vcoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 vcoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-vcoin_cli_SOURCES += bitcoin-cli-res.rc
+vcoin_cli_SOURCES += vcoin-cli-res.rc
 endif
 
 vcoin_cli_LDADD = \
@@ -378,13 +378,13 @@ vcoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
 # vcoin-tx binary #
-vcoin_tx_SOURCES = bitcoin-tx.cpp
+vcoin_tx_SOURCES = vcoin-tx.cpp
 vcoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(VCOIN_INCLUDES)
 vcoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 vcoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-vcoin_tx_SOURCES += bitcoin-tx-res.rc
+vcoin_tx_SOURCES += vcoin-tx-res.rc
 endif
 
 vcoin_tx_LDADD = \
