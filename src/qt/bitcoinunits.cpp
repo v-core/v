@@ -40,9 +40,9 @@ QString VCoinUnits::name(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("BTC");
-    case mBTC: return QString("mBTC");
-    case uBTC: return QString::fromUtf8("μBTC");
+    case BTC: return QString("VCN");
+    case mBTC: return QString("mVCN");
+    case uBTC: return QString::fromUtf8("μVCN");
     default: return QString("???");
     }
 }
